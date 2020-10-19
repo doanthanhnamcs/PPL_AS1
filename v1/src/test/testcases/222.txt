@@ -1,0 +1,10 @@
+
+        Function: nam
+        Body:
+            If(9==4+5 && !b || (a =/= b) ) Then a=2;
+            ElseIf (a>b) Then
+            **do nothing**
+            Else
+            EndIf.
+        EndBody.
+        

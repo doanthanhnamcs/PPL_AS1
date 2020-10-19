@@ -1,0 +1,6 @@
+ Var: a,b,c;
+        Function: nam
+        Parameter: rapViet = 8,y,a[0xFFA]
+        Body:
+            **do nothing** 
+        EndBody.

@@ -1,0 +1,7 @@
+
+        Function: nam
+        Parameter: x
+        Body:
+            x=x+5;
+        EndBody.
+        

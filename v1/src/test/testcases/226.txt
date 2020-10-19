@@ -1,0 +1,7 @@
+
+        Function: nam
+        Body:
+            If(a == b) Then i++4
+            EndIf.
+        EndBody.
+        
