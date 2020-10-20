@@ -1,0 +1,7 @@
+
+        Function: nAm___
+        Parameter: n[100],m[1000];
+        Body: 
+            **non body**
+        EndBody.
+        

@@ -1,0 +1,7 @@
+
+        Function: fact
+        Parameter: x, a[2]
+        Body:
+            {1,2,3}[4]= 1e4;
+        EndBody.
+        

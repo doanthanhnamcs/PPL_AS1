@@ -33,26 +33,29 @@ ID: [a-z] [_a-zA-Z0-9]*;
 var_decl:
 	VAR COLON many_var_decl SEMI; 
 many_var_decl: one_var_decl (COMMA one_var_decl)* ;
-one_var_decl: ID (LSB (INT_LIT) RSB)* (ASSIGN (INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT | ARRAY_LIT))?;
+one_var_decl: ID (LSB (INT_LIT) RSB)* (ASSIGN (INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT | array_lit))?;
 
 
 //func declaration
 func_decl:
-	FUNCTION COLON func_name para_decl*  BODY COLON stm_list ENDBODY DOT ;
+	FUNCTION COLON func_name para_decl*  BODY COLON var_decl* stm_list* ENDBODY DOT ;
 func_name: ID;
 para_decl: PARAMETER COLON ((ID (LSB (INT_LIT) RSB)*)(COMMA (ID (LSB (INT_LIT) RSB)*))*);
 //type
 composit: ID (LSB INT_WITHOUT_0 INT* RSB)+;
 scalar : ID;
+array_lit: LB   ((array_lit | INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT  )  
+( COMMA  (INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT  | array_lit )  )* )?   RB;
 //statement
-stm_list: var_decl* stm_type*;
-stm_type: 
+stm_list: 
 	assign_stm
+	| while_stm
 	| if_stm
-	| for_stm (break_stm | continue_stm)?
-	| while_stm (break_stm | continue_stm)?
-	| do_while_stm (break_stm | continue_stm)?
+	| for_stm 
+	| do_while_stm 
 	| call_stm 
+        | break_stm
+        | continue_stm
 	| return_stm
 ;
 
@@ -62,19 +65,19 @@ assign_stm: (ID | (ID|func_call) index_op) ASSIGN exp SEMI;
 
 //if statement
 
-if_stm: IF exp THEN stm_list (ELSEIF exp THEN stm_list)* (ELSE stm_list)? ENDIF DOT;
+if_stm: IF exp THEN stm_list* (ELSEIF exp THEN stm_list*)* (ELSE stm_list*)? ENDIF DOT;
 
 //for statement
 
-for_stm: FOR LP scalar ASSIGN INT_LIT COMMA exp COMMA exp RP DO stm_list ENDFOR DOT  ;
+for_stm: FOR LP scalar ASSIGN exp COMMA exp COMMA exp RP DO stm_list* ENDFOR DOT  ;
 
 //while statment
 
-while_stm: WHILE exp DO stm_list ENDWHILE DOT;
+while_stm: WHILE exp DO stm_list* ENDWHILE DOT;
 
 //do-while statement
 
-do_while_stm: DO stm_list WHILE exp ENDDO DOT;
+do_while_stm: DO stm_list* WHILE exp ENDDO DOT;
 
 //break statement
 
@@ -90,14 +93,14 @@ call_stm: func_call SEMI;
 
 //return statement
 
-return_stm: RETURN exp SEMI;
+return_stm: RETURN exp? SEMI;
 
 //endstatement
 
 //expression
 INT_LIT: [0] | INT_WITHOUT_0 INT* | HEX | OCT;
 BOOLEAN_LIT: TRUE | FALSE;
-FLOAT_LIT: INT+ DEC? EXP | INT+ DEC EXP?;
+FLOAT_LIT: ('0' | (INT_WITHOUT_0+ INT*)) DEC? EXP | ('0' | (INT_WITHOUT_0+ INT*)) DEC EXP?;
 
 exp:     exp1 EQUALINT exp1
         | exp1  NOT_EQUALINT exp1
@@ -117,7 +120,7 @@ exp3: exp3 MULINT exp4 | exp3 MULFLOAT exp4 | exp3 DIVINT exp4 | exp3 DIVFLOAT e
 exp4: NOT exp4 | exp5;
 exp5: SUBINT exp5 | SUBFLOAT exp5 | exp6;
 index_op: (LSB exp RSB)+ ;
-exp6: INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT | ARRAY_LIT | ID | func_call | LP exp RP | ((ID |func_call) index_op);
+exp6: INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT | array_lit | ID | func_call | LP exp RP | ((ID |func_call) index_op);
 func_call: ID LP list_argument RP;
 list_argument: (exp (COMMA exp)*)?;
 
@@ -192,8 +195,7 @@ DOT: '.';
 COMMA: ',';
 //EndSeparators
 COMMENT : '**' ((~'*') | ('*'~'*'))* '**' -> skip;
-ARRAY_LIT: LB  ' '* (' '*(ARRAY_LIT | INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT  ) ' '* 
-(' '* COMMA ' '* (INT_LIT | FLOAT_LIT | BOOLEAN_LIT | STRING_LIT  | ARRAY_LIT ) ' '* )* ' '*)?  ' '* RB;
+
 // Literal
 INT: [0-9];
 INT_WITHOUT_0: [1-9];
@@ -212,7 +214,7 @@ WS: [ \t\r\n]+ -> skip;
 // string
 fragment STR_CHAR: ~[\n"'\\]|'\'' '"'| ESCAPE_SEQUENCES; 
 fragment ESCAPE_SEQUENCES : ('\\' [bfrnt'\\]) ; 
-fragment ESCAPE_ILLEGAL: '\\' ~[bfrnt'\\]|'\'';
+fragment ESCAPE_ILLEGAL: '\\' ~[bfrnt'\\]|'\''~'"';
 STRING_LIT: '"' STR_CHAR* '"'{
         y = str(self.text)
         

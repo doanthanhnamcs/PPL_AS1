@@ -1,0 +1,8 @@
+
+        Function: nAm___
+        Parameter: n[100],m[1000]
+        Body: 
+            **test somthing**
+            x = (foo(foo(a[5]+"abc")))[2][3];
+        EndBody.
+        

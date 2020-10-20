@@ -1,0 +1,10 @@
+
+        Var : x = 3, y = 12.e004;
+        Function: main
+        Body:
+             
+            x = (4 +. True * "abcy#$@@#$" --.-- (5\foo(2)[4][5]))[0o66];
+            
+        EndBody.
+        
+        

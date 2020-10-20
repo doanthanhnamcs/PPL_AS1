@@ -1,0 +1,8 @@
+
+        Var:a,b,c;
+        Function: fact
+        Parameter:x,y,z
+        Body:
+            foo(2)=123;
+        EndBody.
+        

@@ -1,0 +1,13 @@
+
+        Var:a__11_22[3]={1,2,"#@$@#$2"};
+        Function: fact_1
+        Parameter: x
+        Body:
+            print(a);
+            Function: fact_2
+                Body:
+            print(a);
+                EndBody.
+        EndBody.
+        
+        

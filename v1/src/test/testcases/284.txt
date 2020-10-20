@@ -1,0 +1,11 @@
+
+        Var:a,b,c;
+        Function: fact
+        **hello**
+        **world**
+        Parameter:f(f(f(f(f("ooo")))))
+        Body:
+        Var: a________;
+            
+        EndBody.
+        

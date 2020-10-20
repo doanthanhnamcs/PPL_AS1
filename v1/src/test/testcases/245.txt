@@ -1,0 +1,6 @@
+ 
+        Function: n_____123456789_____A_______M
+        Body:
+            Return;
+            Return foo(3+.*.fooooo("abc"));
+        EndBody.

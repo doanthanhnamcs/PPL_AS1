@@ -1,0 +1,7 @@
+Var: kkk[5][6]="@#!$!@$!!!!!",a=0.e+4 ;
+        Function: nam
+        Parameter: n[100],m[1000]
+        Body: 
+             thread_multi = 9 > 6 < 2;
+        EndBody.
+        

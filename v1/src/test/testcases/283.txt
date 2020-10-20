@@ -1,0 +1,28 @@
+
+        Var:a,b,c;
+        Function: fact
+        **Block comment
+        *abc
+        *xyz
+        *jqk
+        **
+        Parameter:x,y,z
+        Body:
+        Var: sad____asd=4455;
+            While(x>3) Do
+                a=(1+2-.--\---4 || True && False);
+                If(False) Then 
+                Return;
+                ElseIf(!!!a) Then
+                Break;
+                Else
+                    For(i=0xFF,i<5,1) Do
+                    **no thing**
+                    Continue;
+                    Break;
+                    Return {1,2,3};
+                    EndFor.
+                EndIf.
+            EndWhile.
+        EndBody.
+        

@@ -59,13 +59,13 @@ class BKITVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKITParser#stm_list.
-    def visitStm_list(self, ctx:BKITParser.Stm_listContext):
+    # Visit a parse tree produced by BKITParser#array_lit.
+    def visitArray_lit(self, ctx:BKITParser.Array_litContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKITParser#stm_type.
-    def visitStm_type(self, ctx:BKITParser.Stm_typeContext):
+    # Visit a parse tree produced by BKITParser#stm_list.
+    def visitStm_list(self, ctx:BKITParser.Stm_listContext):
         return self.visitChildren(ctx)
 
 

@@ -1,0 +1,12 @@
+Var: a[5] = {"$@#$@____#$@@#$____",2} ; 
+        Function: nam
+        Parameter: f_____,m[1000]
+        Body: 
+            foo(arr[5] *. 5 * foo("abc"),True,"abc"); 
+            Return;
+            Return;
+            Break;
+            Var: a = {1,2,3}, b = "abc"; 
+              
+        EndBody.
+        

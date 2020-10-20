@@ -1,0 +1,13 @@
+
+                Function: main
+        Body:
+            While 0xFFF Do
+                Do 
+                    If i = 1 Then
+                        i = "********";
+                    EndIf.
+                While True EndDo.
+            EndWhile.
+        EndBody.
+        
+        

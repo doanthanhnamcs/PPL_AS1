@@ -1,0 +1,9 @@
+ 
+        Function: ma__ABCDEFin
+         Body:
+             asm =  1 +.-.---"abc"*12.e+400;
+            While (print({4,5,6}) = 123, i < 1e9, 10)
+                tttttttest();
+            EndWhile.
+                     EndBody.
+         

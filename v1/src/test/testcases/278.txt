@@ -1,0 +1,7 @@
+
+        Function: n____Am___
+        Parameter: x,y,z
+        Body: 
+            theUndertaker = 123*"zzz\z"+-------.-.-.-."theasld**bcd**";
+        EndBody.
+        

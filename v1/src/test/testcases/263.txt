@@ -1,0 +1,9 @@
+ 
+        Var: a,b,c;
+        Function: nam_1813130
+        Parameter: parameter
+         Body:
+            Return 1+2;
+            Return 1+2,{"$@#$@!SADASDASDFakjgshduhgu2_2901309813"};
+        EndBody.
+         

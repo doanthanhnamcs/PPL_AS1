@@ -1,0 +1,12 @@
+
+        Function: nAm___
+        Parameter: n[100],m[1000]
+        Body: 
+        Var: x = "__@#!@#!R@#!@!@SDASFf",b=312312312313.e+4444444444;
+            foo(2. +. 4., 2 *. 10,c(in(in(in4))));
+            foo(2. +. 4., 2 *. 10,c(in(in(in4))));
+            foo(2. +. 4., 2 *. 10,c(in(in(in4))));
+            foo(2. +. 4., 2 *. 10,c(in(in(in4))));
+            Do While() EndDo.
+        EndBody.
+        

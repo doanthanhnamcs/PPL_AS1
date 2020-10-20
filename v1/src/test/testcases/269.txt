@@ -1,0 +1,8 @@
+ 
+        Var: a,b,c;
+        Function: nam__t_h
+        Parameter: hello, hi ** unterminated comment
+         Body:
+            i=i+1;
+        EndBody.
+         

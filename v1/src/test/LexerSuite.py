@@ -85,25 +85,25 @@ class LexerSuite(unittest.TestCase):
 	def test_141(self):
 		self.assertTrue(TestLexer.checkLexeme(">.<.==<=<=.>=>=.=" , ">.,<.,==,<=,<=.,>=,>=.,=,<EOF>", 141))
 	def test_142(self):
-		self.assertTrue(TestLexer.checkLexeme("{1.05,1,\"huhihihu\"}" , "{1.05,1,\"huhihihu\"},<EOF>", 142))
+		self.assertTrue(TestLexer.checkLexeme("{1.05,1,\"huhihihu\"}" , "{,1.05,,,1,,,huhihihu,},<EOF>", 142))
 	def test_143(self):
-		self.assertTrue(TestLexer.checkLexeme("{1,   3,5    }" , "{1,   3,5    },<EOF>", 143))
+		self.assertTrue(TestLexer.checkLexeme("{1,   3,5    }" , "{,1,,,3,,,5,},<EOF>", 143))
 	def test_144(self):
-		self.assertTrue(TestLexer.checkLexeme("{{    },{            } }" , "{{    },{            } },<EOF>", 144))
+		self.assertTrue(TestLexer.checkLexeme("{{    },{            } }" , "{,{,},,,{,},},<EOF>", 144))
 	def test_145(self):
-		self.assertTrue(TestLexer.checkLexeme("{ {1,2,3},{4,5,6}}" , "{ {1,2,3},{4,5,6}},<EOF>", 145))
+		self.assertTrue(TestLexer.checkLexeme("{ {1,2,3},{4,5,6}}" , "{,{,1,,,2,,,3,},,,{,4,,,5,,,6,},},<EOF>", 145))
 	def test_146(self):
-		self.assertTrue(TestLexer.checkLexeme("{\"abc\",\"xyz\"}" , "{\"abc\",\"xyz\"},<EOF>", 146))
+		self.assertTrue(TestLexer.checkLexeme("{\"abc\",\"xyz\"}" , "{,abc,,,xyz,},<EOF>", 146))
 	def test_147(self):
-		self.assertTrue(TestLexer.checkLexeme("{True,False,False,True}" , "{True,False,False,True},<EOF>", 147))
+		self.assertTrue(TestLexer.checkLexeme("{True,False,False,True}" , "{,True,,,False,,,False,,,True,},<EOF>", 147))
 	def test_148(self):
-		self.assertTrue(TestLexer.checkLexeme("{{1,2,3},{4,5,6,{7,8,9}}}" , "{{1,2,3},{4,5,6,{7,8,9}}},<EOF>", 148))
+		self.assertTrue(TestLexer.checkLexeme("{{1,2,3},{4,5,6,{7,8,9}}}" , "{,{,1,,,2,,,3,},,,{,4,,,5,,,6,,,{,7,,,8,,,9,},},},<EOF>", 148))
 	def test_149(self):
-		self.assertTrue(TestLexer.checkLexeme("{{1,2,3},{4,5,6,{7,8,9},   {10,11,12}}}" , "{{1,2,3},{4,5,6,{7,8,9},   {10,11,12}}},<EOF>", 149))
+		self.assertTrue(TestLexer.checkLexeme("{{1,2,3},{4,5,6,{7,8,9},   {10,11,12}}}" , "{,{,1,,,2,,,3,},,,{,4,,,5,,,6,,,{,7,,,8,,,9,},,,{,10,,,11,,,12,},},},<EOF>", 149))
 	def test_150(self):
-		self.assertTrue(TestLexer.checkLexeme("{0xABC,2,0O320}" , "{0xABC,2,0O320},<EOF>", 150))
+		self.assertTrue(TestLexer.checkLexeme("{0xABC,2,0O320}" , "{,0xABC,,,2,,,0O320,},<EOF>", 150))
 	def test_151(self):
-		self.assertTrue(TestLexer.checkLexeme("{12e4,4.,0.}" , "{12e4,4.,0.},<EOF>", 151))
+		self.assertTrue(TestLexer.checkLexeme("{12e4,4.,0.}" , "{,12e4,,,4.,,,0.,},<EOF>", 151))
 	def test_152(self):
 		self.assertTrue(TestLexer.checkLexeme("{1,2 **haha**   }" , "{,1,,,2,},<EOF>", 152))
 	def test_153(self):
@@ -119,7 +119,7 @@ class LexerSuite(unittest.TestCase):
 	def test_158(self):
 		self.assertTrue(TestLexer.checkLexeme("\"string with special symbol \\n is\"","string with special symbol \\n is,<EOF>",158))
 	def test_159(self):
-		self.assertTrue(TestLexer.checkLexeme("\"Illegal esc ' ok \"","Illegal Escape In String: Illegal esc '",159))
+		self.assertTrue(TestLexer.checkLexeme("\"Illegal esc ' ok \"","Illegal Escape In String: Illegal esc ' ",159))
 	def test_160(self):
 		self.assertTrue(TestLexer.checkLexeme("\"Illegal with more esc \\t \\k\"","Illegal Escape In String: Illegal with more esc \\t \\k",160))
 	def test_161(self):
@@ -141,17 +141,17 @@ class LexerSuite(unittest.TestCase):
 	def test_168(self):
 		self.assertTrue(TestLexer.checkLexeme("*****","*,<EOF>",168))
 	def test_170(self):
-		self.assertTrue(TestLexer.checkLexeme("Var: x=3,y=5,b=c,a,a,f={1,2};","Var,:,x,=,3,,,y,=,5,,,b,=,c,,,a,,,a,,,f,=,{1,2},;,<EOF>",170))
+		self.assertTrue(TestLexer.checkLexeme("Var: x=3,y=5,b=c,a,a,f={1,2};","Var,:,x,=,3,,,y,=,5,,,b,=,c,,,a,,,a,,,f,=,{,1,,,2,},;,<EOF>",170))
 	def test_171(self):
 		self.assertTrue(TestLexer.checkLexeme("var: a,b,c,d;","var,:,a,,,b,,,c,,,d,;,<EOF>",171))#var = id
 	def test_172(self):
 		self.assertTrue(TestLexer.checkLexeme("v=4+.3*.5-2=6.e4","v,=,4,+.,3,*.,5,-,2,=,6.e4,<EOF>",172))
 	def test_173(self):
-		self.assertTrue(TestLexer.checkLexeme("If(!a && b =/= c) Then z={1,5e99}","If,(,!,a,&&,b,=/=,c,),Then,z,=,{1,5e99},<EOF>",173))
+		self.assertTrue(TestLexer.checkLexeme("If(!a && b =/= c) Then z={1,5e99}","If,(,!,a,&&,b,=/=,c,),Then,z,=,{,1,,,5e99,},<EOF>",173))
 	def test_174(self):
-		self.assertTrue(TestLexer.checkLexeme("a[3+foo(i)] = b +. {1.2}","a,[,3,+,foo,(,i,),],=,b,+.,{1.2},<EOF>",174))
+		self.assertTrue(TestLexer.checkLexeme("a[3+foo(i)] = b +. {1.2}","a,[,3,+,foo,(,i,),],=,b,+.,{,1.2,},<EOF>",174))
 	def test_175(self):
-		self.assertTrue(TestLexer.checkLexeme("a[0xAFF][3] != {{1,2,3},{4,5,6}}","a,[,0xAFF,],[,3,],!=,{{1,2,3},{4,5,6}},<EOF>",175))
+		self.assertTrue(TestLexer.checkLexeme("a[0xAFF][3] != {{1,2,3},{4,5,6}}","a,[,0xAFF,],[,3,],!=,{,{,1,,,2,,,3,},,,{,4,,,5,,,6,},},<EOF>",175))
 	def test_176(self):
 		self.assertTrue(TestLexer.checkLexeme("For(i=9;i<11;i=i+1)","For,(,i,=,9,;,i,<,11,;,i,=,i,+,1,),<EOF>",176))
 	def test_177(self):
@@ -175,11 +175,11 @@ class LexerSuite(unittest.TestCase):
 	def test_185(self):
 		self.assertTrue(TestLexer.checkLexeme("\"Hello \\a \"","Illegal Escape In String: Hello \\a",185))
 	def test_186(self):
-		self.assertTrue(TestLexer.checkLexeme("\"Illegal with the \\' escape \'\" abcxyz \' \"","Illegal Escape In String: Illegal with the \\' escape \'\" abcxyz \'",186))
+		self.assertTrue(TestLexer.checkLexeme("\"Illegal with the \\' escape \'\" abcxyz \' \"","Illegal Escape In String: Illegal with the \\' escape \'\" abcxyz \' ",186))
 	def test_187(self):
 		self.assertTrue(TestLexer.checkLexeme("\"A normal string nested string: \'\"a nested string\'\" \"","A normal string nested string: \'\"a nested string\'\" ,<EOF>",187))
 	def test_188(self):
-		self.assertTrue(TestLexer.checkLexeme("\"Some illegals '\" 'b \"","Illegal Escape In String: Some illegals \'\" '",188))
+		self.assertTrue(TestLexer.checkLexeme("\"Some illegals '\" 'b \"","Illegal Escape In String: Some illegals \'\" 'b",188))
 	def test_189(self):
 		self.assertTrue(TestLexer.checkLexeme("\"Some illegals '\" \\nabc \\k \"","Illegal Escape In String: Some illegals \'\" \\nabc \k",189))
 	def test_190(self):
@@ -203,6 +203,4 @@ class LexerSuite(unittest.TestCase):
 	def test_199(self):
 		self.assertTrue(TestLexer.checkLexeme("**bbbjhgjh***","*,<EOF>",199))
 	def test_100(self):
-		self.assertTrue(TestLexer.checkLexeme("\"Minh \\\'la \\\ thanh\'\" \\\\nam\"","Minh \\\'la \\\ thanh\'\" \\\\nam,<EOF>",100))
-		
-        
+		self.assertTrue(TestLexer.checkLexeme("\"Minh \\\'la \\\ thanh\'\" \\\\nam\"","Minh \\\'la \\\ thanh\'\" \\\\nam,<EOF>",100))      

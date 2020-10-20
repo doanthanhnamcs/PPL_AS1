@@ -1,0 +1,10 @@
+ 
+        Var:m[1231],n[0xF6A]={"haha",123};
+        Function: main_____________
+        Parameter:a,b,cdef
+        Body:
+           Do **nothing**
+           Var:x=3;
+           While(y>4)
+           EndDo.
+        EndBody.
